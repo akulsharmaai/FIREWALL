@@ -25,6 +25,37 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+  // Test Lab UI Logic
+  const testLabToggle = document.getElementById('test-lab-toggle');
+  const testLabMenu = document.getElementById('test-lab-menu');
+  
+  if (testLabToggle && testLabMenu) {
+    testLabToggle.addEventListener('click', () => {
+      testLabMenu.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('.test-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const targetId = e.target.getAttribute('data-target');
+        
+        // Execute a small script in the active tab to scroll to the element
+        const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+        if (tab) {
+          chrome.scripting.executeScript({
+            target: { tabId: tab.id },
+            func: (id) => {
+              const el = document.getElementById(id);
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            },
+            args: [targetId]
+          });
+        }
+      });
+    });
+  }
+
   scanBtn.addEventListener('click', async () => {
     setLoadingState();
     
