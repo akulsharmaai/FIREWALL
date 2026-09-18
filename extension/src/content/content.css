@@ -1,0 +1,7 @@
+/* Optional global styles injected into the page */
+/* Notice: we use shadow DOM for the badge to avoid conflicts, but for highlights we use simple classes */
+
+.hf-highlighted-evidence {
+  /* Kept minimal to avoid breaking layouts */
+  display: inline;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Human Firewall</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo">🛡️ Human Firewall</div>
+  </div>
+
+  <div class="main-content">
+    <div id="status-container" class="status-box">
+      <p id="status-text">Ready to scan current page.</p>
+    </div>
+
+    <button id="scan-btn" class="primary-btn">Scan Current Page</button>
+
+    <div id="result-container" class="hidden result-box">
+      <div id="manipulation-banner" class="banner hidden">Potential manipulation detected</div>
+      
+      <div class="result-details">
+        <p><strong>Technique:</strong> <span id="res-technique">-</span></p>
+        <p><strong>Confidence:</strong> <span id="res-confidence">-</span></p>
+        <p><strong>Severity:</strong> <span id="res-severity" class="severity-badge">-</span></p>
+      </div>
+
+      <div class="result-section">
+        <strong>Evidence:</strong>
+        <div id="res-evidence" class="evidence-box"></div>
+      </div>
+
+      <div class="result-section">
+        <strong>Why?</strong>
+        <p id="res-explanation" class="text-sm">-</p>
+      </div>
+
+      <div id="targeting-section" class="result-section hidden">
+        <strong>Why was I shown this?</strong>
+        <p class="text-xs text-muted">Possible contextual signals:</p>
+        <ul id="res-targeting-signals" class="text-sm"></ul>
+        <p class="text-xs disclaimer">This describes observable contextual signals. It does not reveal proprietary platform logic.</p>
+      </div>
+    </div>
+    
+    <div id="error-container" class="hidden error-box">
+      <p id="error-text">An error occurred.</p>
+    </div>
+  </div>
+
+  <script src="../utils/constants.js"></script>
+  <script src="../utils/messaging.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

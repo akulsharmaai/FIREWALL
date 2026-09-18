@@ -1,0 +1,131 @@
+body {
+  width: 320px;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #333;
+  background-color: #f9fafb;
+}
+
+.header {
+  background-color: #1f2937;
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.main-content {
+  padding: 16px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.primary-btn {
+  width: 100%;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.primary-btn:hover {
+  background-color: #2563eb;
+}
+
+.primary-btn:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.status-box {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.result-box {
+  margin-top: 16px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 16px;
+}
+
+.banner {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #fecaca;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.banner.safe {
+  background-color: #f0fdf4;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+
+.result-details p {
+  margin: 4px 0;
+  font-size: 13px;
+}
+
+.result-section {
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.evidence-box {
+  background-color: #fffbeb;
+  border-left: 3px solid #f59e0b;
+  padding: 6px 8px;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.text-sm {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.text-xs {
+  font-size: 11px;
+}
+
+.text-muted {
+  color: #6b7280;
+}
+
+.disclaimer {
+  color: #9ca3af;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+ul {
+  margin: 4px 0;
+  padding-left: 20px;
+}
+
+.error-box {
+  margin-top: 16px;
+  padding: 10px;
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-radius: 4px;
+  font-size: 13px;
+  text-align: center;
+}
