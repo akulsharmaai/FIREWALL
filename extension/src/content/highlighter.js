@@ -92,12 +92,31 @@ const Highlighter = {
       const badge = document.createElement('div');
       badge.className = 'hf-badge';
       
-      const analysis = result.analysis;
+      const FRIENDLY_NAMES = {
+        'artificial_scarcity': 'Fake Limited Stock',
+        'urgency': 'Urgent Countdown / Rush Tactic',
+        'social_pressure': 'Peer Pressure & Hype',
+        'deceptive_choice': 'Guilt-Trip Choice',
+        'dark_pattern': 'Hidden Traps & Fine Print',
+        'clickbait': 'Clickbait / Attention Trap',
+        'emotional_manipulation': 'Emotional Pressure',
+        'general_persuasion': 'Pushy Sales Language',
+        'rhetorical_persuasion': 'Pushy Sales Language',
+        'persuasion': 'Pushy Sales Language',
+        'rhetorical persuasion': 'Pushy Sales Language',
+        'persuasive marketing copy': 'Pushy Sales Language'
+      };
+
+      const analysis = result.analysis || {};
+      const cat = (analysis.category || '').toLowerCase();
+      const tech = (analysis.technique || '').toLowerCase();
+      const friendlyTech = FRIENDLY_NAMES[cat] || FRIENDLY_NAMES[tech] || analysis.technique || 'Pushy Sales Language';
+
       badge.innerHTML = `
         <span class="hf-icon">🛡️</span>
         <div>
-          <strong>${analysis.technique}</strong><br>
-          <span style="opacity:0.8; font-size: 12px;">Confidence: ${Math.round(analysis.confidence * 100)}%</span>
+          <strong>${friendlyTech}</strong><br>
+          <span style="opacity:0.8; font-size: 12px;">Confidence: ${Math.round((analysis.confidence || 0) * 100)}%</span>
         </div>
         <span class="hf-close" title="Dismiss">✕</span>
       `;

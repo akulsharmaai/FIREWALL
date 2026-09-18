@@ -79,6 +79,47 @@ document.addEventListener('DOMContentLoaded', () => {
     errorContainer.classList.add('hidden');
   }
 
+  const FRIENDLY_NAMES = {
+    'artificial_scarcity': 'Fake Limited Stock',
+    'urgency': 'Urgent Countdown / Rush Tactic',
+    'social_pressure': 'Peer Pressure & Hype',
+    'deceptive_choice': 'Guilt-Trip Choice',
+    'dark_pattern': 'Hidden Traps & Fine Print',
+    'clickbait': 'Clickbait / Attention Trap',
+    'emotional_manipulation': 'Emotional Pressure',
+    'general_persuasion': 'Pushy Sales Language',
+    'rhetorical_persuasion': 'Pushy Sales Language',
+    'persuasion': 'Pushy Sales Language',
+    'rhetorical persuasion': 'Pushy Sales Language',
+    'persuasive marketing copy': 'Pushy Sales Language',
+    'fake stock / scarcity warning': 'Fake Limited Stock',
+    'urgency & time pressure': 'Urgent Countdown / Rush Tactic',
+    'social proof & hype': 'Peer Pressure & Hype',
+    'social proof': 'Peer Pressure & Hype',
+    'guilt-trip choice (confirmshaming)': 'Guilt-Trip Choice',
+    'confirmshaming': 'Guilt-Trip Choice',
+    'hidden fine print / sneaky terms': 'Hidden Traps & Fine Print',
+    'attention trap / clickbait': 'Clickbait / Attention Trap'
+  };
+
+  function formatFriendlyTechnique(technique, category) {
+    if (category && FRIENDLY_NAMES[category.toLowerCase()]) {
+      return FRIENDLY_NAMES[category.toLowerCase()];
+    }
+    if (technique && FRIENDLY_NAMES[technique.toLowerCase()]) {
+      return FRIENDLY_NAMES[technique.toLowerCase()];
+    }
+    return technique || 'Pushy Sales Language';
+  }
+
+  function formatSeverity(severity) {
+    if (!severity || severity.toLowerCase() === 'none') return '-';
+    const s = severity.toLowerCase();
+    if (s.includes('high')) return 'High Risk';
+    if (s.includes('low')) return 'Low Risk';
+    return 'Medium Risk';
+  }
+
   function displayResult(result) {
     scanBtn.disabled = false;
     scanBtn.textContent = 'Scan Current Page';
@@ -97,9 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
       banner.textContent = 'Potential manipulation detected';
       banner.className = 'banner';
       
-      techniqueEl.textContent = analysis.technique || 'Unknown';
+      techniqueEl.textContent = formatFriendlyTechnique(analysis.technique, analysis.category);
       confidenceEl.textContent = analysis.confidence ? `${Math.round(analysis.confidence * 100)}%` : 'N/A';
-      severityEl.textContent = analysis.severity || 'Medium';
+      severityEl.textContent = formatSeverity(analysis.severity);
       
       evidenceEl.innerHTML = '';
       if (analysis.evidence && analysis.evidence.length > 0) {

@@ -22,11 +22,24 @@ def analyze_content(request: AnalysisRequest) -> AnalysisResponse:
     # ML Inference
     prediction = ml_model.predict(request.text, context)
     
-    # Generate Explanation if manipulation detected
+    # Generate User-Friendly Explanation if manipulation detected
     explanation = None
     if prediction.get("manipulation_detected"):
-        technique = prediction.get("technique", "Manipulative language")
-        explanation = f"The content appears to use {technique} to influence behavior."
+        cat = prediction.get("category", "")
+        technique = prediction.get("technique", "Manipulative Copy")
+        
+        explanations_map = {
+            "artificial_scarcity": "This page claims stock or seats are running out to make you rush into buying before checking other options.",
+            "urgency": "This page uses urgent countdown timers or rush warnings to pressure you into making a fast purchase.",
+            "social_pressure": "This page highlights recent buyers or visitor counts to create peer pressure.",
+            "deceptive_choice": "This page uses guilt-tripping options (like 'No thanks, I hate saving') or misleading buttons to influence your choice.",
+            "dark_pattern": "This page hides important fees or sneaks paid add-ons into your order in fine print.",
+            "clickbait": "This headline uses sensationalist phrasing to trick you into clicking.",
+            "emotional_manipulation": "This copy plays on fear or guilt to pressure you into taking action.",
+            "general_persuasion": "This page uses pushy sales pitches or slogans to influence your purchase decision.",
+            "rhetorical_persuasion": "This page uses pushy sales pitches or slogans to influence your purchase decision."
+        }
+        explanation = explanations_map.get(cat, f"This content uses {technique.lower() if technique else 'persuasive tactics'} to influence your choices online.")
     
     analysis_result = AnalysisResult(
         manipulation_detected=prediction.get("manipulation_detected", False),

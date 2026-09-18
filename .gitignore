@@ -40,6 +40,9 @@ env/
 *.pth
 *.pt
 *.safetensors
+!ml/models/*.pkl
+!ml/models/*.json
+!extension/manifest.json
 
 # Node.js & Frontend
 node_modules/
