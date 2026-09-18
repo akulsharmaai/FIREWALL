@@ -27,7 +27,7 @@ def test_analyze_mock_scarcity():
         
         analysis = data["analysis"]
         assert analysis["manipulation_detected"] is True
-        assert analysis["technique"] == "Artificial Scarcity"
+        assert analysis["technique"] == "Fake Limited Stock"
         assert "confidence" in analysis
         
         targeting = data["targeting"]
